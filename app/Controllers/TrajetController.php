@@ -3,11 +3,11 @@ namespace App\Controllers;
 
 use App\Models\Trajet;
 
-class TrajetController
+class TrajetController extends BaseController
 {
-    public function index(): void
+    public function create(): void
     {
-        $trajets = Trajet::getAvailableFutureTrips();
-        require __DIR__ . '/../Views/trajet/index.php';
+        $this->requireLogin();
+        require __DIR__ . '/../Views/trajet/create.php';
     }
 }
