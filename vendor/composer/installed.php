@@ -3,7 +3,7 @@
         'name' => 'julien/touche-pas-au-klaxon',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'cb9bbe364676d907d0301c47ecc4832fa556b233',
+        'reference' => 'f2b2f345a0add58b8a80a017a07374a0ccb1b5d9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'julien/touche-pas-au-klaxon' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'cb9bbe364676d907d0301c47ecc4832fa556b233',
+            'reference' => 'f2b2f345a0add58b8a80a017a07374a0ccb1b5d9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

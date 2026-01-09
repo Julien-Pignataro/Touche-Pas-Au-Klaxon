@@ -11,17 +11,21 @@ class Database
     public static function getConnection(): PDO
     {
         if (self::$pdo === null) {
-            $config = require __DIR__ . '/../../config/database.php';
-
-            self::$pdo = new PDO(
-                "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8mb4",
-                $config['user'],
-                $config['password'],
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                ]
-            );
+            try {
+                self::$pdo = new PDO(
+                    'mysql:host=127.0.0.1;dbname=covoiturage_intranet;charset=utf8',
+                    'root',
+                    '',
+                    [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                    ]
+                );
+            } catch (PDOException $e) {
+                die('Erreur connexion DB : ' . $e->getMessage());
+            }
         }
+
         return self::$pdo;
     }
 }

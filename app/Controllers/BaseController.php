@@ -19,12 +19,9 @@ class BaseController
 
     protected function requireAdmin(): void
     {
-        if (
-            empty($_SESSION['user']) ||
-            $_SESSION['user']['role'] !== 'ADMIN'
-        ) {
-            header('Location: index.php');
-            exit;
+    if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
+        header('Location: index.php');
+        exit;
         }
     }
 }

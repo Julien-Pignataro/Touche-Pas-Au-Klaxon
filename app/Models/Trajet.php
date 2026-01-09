@@ -78,4 +78,36 @@ class Trajet
             'agence_arrivee' => $data['id_agence_arrivee'],
         ]);
     }
+    public static function delete(int $id): bool
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare("DELETE FROM trajet WHERE id_trajet = :id");
+    return $stmt->execute(['id' => $id]);
+}
+public static function find(int $id): array|false
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare("SELECT * FROM trajet WHERE id_trajet = :id");
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public static function update(int $id, array $data): bool
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare("
+        UPDATE trajet SET
+            date_heure_depart = :depart,
+            date_heure_arrivee = :arrivee,
+            places_total = :places
+        WHERE id_trajet = :id
+    ");
+
+    return $stmt->execute([
+        'depart' => $data['date_heure_depart'],
+        'arrivee' => $data['date_heure_arrivee'],
+        'places' => $data['places_total'],
+        'id' => $id
+    ]);
+}
 }
