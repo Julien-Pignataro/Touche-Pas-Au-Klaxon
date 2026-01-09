@@ -4,61 +4,44 @@
 
 <hr>
 
+<h2>Utilisateurs</h2>
+<?php if (empty($utilisateurs)): ?>
+    <p>Aucun utilisateur</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($utilisateurs as $u): ?>
+            <li><?= $u['prenom'] ?> <?= $u['nom'] ?> (<?= $u['email'] ?>)</li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<hr>
+
 <h2>Agences</h2>
-
-<form method="post" action="index.php?controller=admin&action=addAgence" class="row g-2 mb-3">
-    <div class="col-md-6">
-        <input class="form-control" name="ville" placeholder="Nouvelle agence" required>
-    </div>
-    <div class="col-md-2">
-        <button class="btn btn-primary">Ajouter</button>
-    </div>
-</form>
-
-<table class="table table-striped">
-    <tr>
-        <th>Ville</th>
-        <th>Action</th>
-    </tr>
-    <?php foreach ($agences as $agence): ?>
-        <tr>
-            <td><?= htmlspecialchars($agence['ville']) ?></td>
-            <td>
-                <a href="index.php?controller=admin&action=deleteAgence&id=<?= $agence['id_agence'] ?>"
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('Supprimer cette agence ?')">
-                   Supprimer
-                </a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<?php if (empty($agences)): ?>
+    <p>Aucune agence</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($agences as $a): ?>
+            <li><?= $a['ville'] ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
 
 <hr>
 
 <h2>Trajets</h2>
-
-<table class="table table-bordered">
-    <tr>
-        <th>Départ</th>
-        <th>Arrivée</th>
-        <th>Date</th>
-        <th>Action</th>
-    </tr>
-    <?php foreach ($trajets as $trajet): ?>
-        <tr>
-            <td><?= htmlspecialchars($trajet['ville_depart']) ?></td>
-            <td><?= htmlspecialchars($trajet['ville_arrivee']) ?></td>
-            <td><?= $trajet['date_heure_depart'] ?></td>
-            <td>
-                <a href="index.php?controller=admin&action=deleteTrajet&id=<?= $trajet['id_trajet'] ?>"
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('Supprimer ce trajet ?')">
-                   Supprimer
-                </a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<?php if (empty($trajets)): ?>
+    <p>Aucun trajet</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($trajets as $t): ?>
+            <li>
+                <?= $t['ville_depart'] ?> → <?= $t['ville_arrivee'] ?>
+                (<?= $t['date_depart'] ?>)
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
 
 <?php require __DIR__ . '/../layout/footer.php'; ?>

@@ -25,4 +25,18 @@ class Agence
         $stmt = $pdo->prepare("DELETE FROM agence WHERE id_agence = :id");
         return $stmt->execute(['id' => $id]);
     }
+    public static function find(int $id): array|false
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare("SELECT * FROM agence WHERE id_agence = :id");
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public static function update(int $id, string $ville): bool
+{
+    $pdo = Database::getConnection();
+    $stmt = $pdo->prepare("UPDATE agence SET ville = :ville WHERE id_agence = :id");
+    return $stmt->execute(['ville' => $ville, 'id' => $id]);
+}
 }
