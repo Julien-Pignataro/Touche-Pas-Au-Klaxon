@@ -16,7 +16,8 @@ class AuthController
                     'nom' => $user['nom'],
                     'prenom' => $user['prenom'],
                     'email' => $user['email'],
-                    'role' => $user['role']
+                    'role' => $user['role'],
+                    'is_admin' => ($user['role'] == 'ADMIN') ? '1':'0',
                 ];
                 header('Location: index.php');
                 exit;
